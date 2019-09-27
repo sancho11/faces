@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import sys
-import faces.haarcascade_frontalface_alt.xml
 import cv2
 import sys
 
