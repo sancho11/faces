@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 import sys
 import cv2
-import sys
+import numpy as np
+import pickle
+
 
 vid_cam = cv2.VideoCapture(0)
-face_detector = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
+face_detector = cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
 face_id = 1
-count = 0
 while(vid_cam.isOpened()):
     ret, image_frame = vid_cam.read()
     gray = cv2.cvtColor(image_frame, cv2.COLOR_BGR2GRAY)
@@ -16,12 +17,8 @@ while(vid_cam.isOpened()):
         name="Persona"
         cv2.rectangle(image_frame, (x,y), (x+w,y+h), (255,0,0), 2)
         cv2.putText(image_frame,name, (x,y), font,1,(255,0,0), 2, cv2.LINE_AA)
-        count += 1
-        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
         cv2.imshow('frame', image_frame)
     if cv2.waitKey(100) & 0xFF == ord('q'):
-        break
-    elif count>100:
         break
 vid_cam.release()
 cv2.destroyAllWindows()
