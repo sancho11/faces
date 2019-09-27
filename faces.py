@@ -55,6 +55,7 @@ while(True):
     	#	cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
     # Display the resulting frame
     cv2.imshow('frame',frame)
+    contfps+=1
     if cv2.waitKey(20) & 0xFF == ord('q'):
         break
 
